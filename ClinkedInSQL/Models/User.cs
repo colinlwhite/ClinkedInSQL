@@ -7,6 +7,19 @@ namespace ClinkedInSQL.Models
 {
     public class User
     {
+        public User(string name, DateTime releasedate, bool isprisoner, int age)
+        {
+            Name = name;
+            ReleaseDate = releasedate;
+            IsPrisoner = isprisoner;
+            Age = age;
+
+        }
+
+        public string Name { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public bool IsPrisoner { get; set; }
+        public int Age { get; set; }
 
     }
 }

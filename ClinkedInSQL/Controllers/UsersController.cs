@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ClinkedInSQL.Data;
+
 
 namespace ClinkedInSQL.Controllers
 {
@@ -11,6 +13,13 @@ namespace ClinkedInSQL.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        readonly UserRepository _userRepository;
+
+        public UsersController()
+        {
+            _userRepository = new UserRepository();
+        }
+
         [HttpGet]
         public ActionResult GetAllUsers()
         {
