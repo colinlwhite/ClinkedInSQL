@@ -26,5 +26,12 @@ namespace ClinkedInSQL.Controllers
             var users = _userRepository.GetAll();
             return Ok(users);
         }
+
+        [HttpGet("{id}")]
+        public ActionResult GetUsersServicesList(int id)
+        {
+            var userServices = _userRepository.GetUsersServices(id);
+                return Ok(userServices);
+        }
     }
 }

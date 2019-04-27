@@ -22,4 +22,20 @@ namespace ClinkedInSQL.Models
         public int Age { get; set; }
 
     }
+
+    public class UserServices
+    {
+        public UserServices(int id, string username, string servicename, string description)
+        {
+            Id = id;
+            UserName = username;
+            ServiceName = servicename;
+            Description = description;
+        }
+
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string ServiceName { get; set; }
+        public string Description { get; set; }
+    }
 }

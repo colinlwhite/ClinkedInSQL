@@ -48,5 +48,40 @@ namespace ClinkedInSQL.Data
 
             return users;
         }
+
+        public List<UserServices> GetUsersServices(int id)
+        {
+
+            var userServicesList = new List<UserServices>();
+
+            var connection = new SqlConnection("Server=localhost;Database=ClinkedIn;Trusted_Connection=True;");
+            connection.Open();
+
+            var getUsersByServicesCommand = connection.CreateCommand();
+            getUsersByServicesCommand.CommandText = $@"Select u.Id, u.Name, s.Name, s.Description
+                                                        From UserServiceJoin as us
+                                                        Join Users u on u.Id = us.UserId
+                                                        Join Services s on s.Id = us.ServiceId
+                                                        Where u.Id = @Id";
+
+           getUsersByServicesCommand.Parameters.AddWithValue("@Id", id);
+
+            var reader = getUsersByServicesCommand.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var userid = (int)reader["Id"];
+                var username = reader["Name"].ToString();
+                var servicename = reader["Name"].ToString();
+                var description = reader["Description"].ToString();
+                var singleex = new UserServices(userid, username, servicename, description);
+
+                userServicesList.Add(singleex);
+
+            }
+            connection.Close();
+
+            return userServicesList;
+        }
     }
 }
